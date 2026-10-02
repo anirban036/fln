@@ -1,5 +1,8 @@
-
-import fs from 'node:fs';
+db.question_subskills.find({
+  subskill_id: "SK13.06",
+  representation: "verbal",
+  context: "real_world"
+})import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,6 +11,7 @@ const __dirname = path.dirname(__filename);
 
 const seedPath = path.join(__dirname, 'question_bank_seed.json');
 const mapPath = path.join(__dirname, 'skillLevelMap.json');
+const joinPath = path.join(__dirname, 'question_subskills.json');
 
 const REP = [
   'concrete',
@@ -20,77 +24,159 @@ const REP = [
   'decomposition',
   'error_analysis',
 ];
+
 const CTX = ['direct', 'real_world'];
-const LEGACY_DIFF = new Set(['easy', 'medium', 'hard']);
 const errors = [];
 const err = (id, msg) => errors.push(`${id}: ${msg}`);
 
 const normalizeDifficulty = (value) => {
   if (value === 1 || value === 2 || value === 3) return value;
+
   const text = String(value).trim().toLowerCase();
   if (text === 'easy') return 1;
   if (text === 'medium') return 2;
   if (text === 'hard') return 3;
+
   return null;
 };
 
 let qs;
-try { qs = JSON.parse(fs.readFileSync(seedPath, 'utf8')); }
-catch (e) { console.error('FAIL: not valid JSON -> ' + e.message); process.exit(1); }
-if (!Array.isArray(qs)) { console.error('FAIL: file is not a JSON array'); process.exit(1); }
+
+try {
+  qs = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+} catch (e) {
+  console.error('FAIL: could not read or parse question_bank_seed.json -> ' + e.message);
+  process.exit(1);
+}
+
+if (!Array.isArray(qs)) {
+  console.error('FAIL: question_bank_seed.json is not a JSON array');
+  process.exit(1);
+}
 
 let known = null;
+
 if (fs.existsSync(mapPath)) {
-  const map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
-  const skillsMap = map.skills ?? map.levels ?? {};
-  known = new Set(
-    Object.values(skillsMap)
-      .flatMap((entry) => Array.isArray(entry.subskills) ? entry.subskills.map(s => s.id ?? s) : [])
-      .filter(Boolean)
-  );
+  try {
+    const map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
+    const skillsMap = map.skills ?? map.levels ?? {};
+
+    known = new Set(
+      Object.values(skillsMap)
+        .flatMap((entry) =>
+          Array.isArray(entry.subskills)
+            ? entry.subskills.map((s) => s.id ?? s)
+            : []
+        )
+        .filter(Boolean)
+    );
+  } catch (e) {
+    console.error('FAIL: could not read or parse skillLevelMap.json -> ' + e.message);
+    process.exit(1);
+  }
 }
 
 const seen = new Set();
-const bySub = {};
+const questionSubskills = [];
+
 for (const q of qs) {
   const id = q.question_id || '(no id)';
-  for (const k of ['question_id', 'question', 'answer', 'answer_type', 'topic', 'subtopic', 'difficulty', 'source_level'])
-    if (q[k] === undefined || q[k] === '') err(id, `missing ${k}`);
-  if (seen.has(id)) err(id, 'duplicate question_id');
+
+  for (const key of [
+    'question_id',
+    'question',
+    'answer',
+    'answer_type',
+    'topic',
+    'subtopic',
+    'difficulty',
+    'source_level',
+  ]) {
+    if (q[key] === undefined || q[key] === '') {
+      err(id, `missing ${key}`);
+    }
+  }
+
+  if (seen.has(id)) {
+    err(id, 'duplicate question_id');
+  }
   seen.add(id);
 
   const normalizedDifficulty = normalizeDifficulty(q.difficulty);
-  if (normalizedDifficulty === null) err(id, `bad difficulty "${q.difficulty}"`);
+  if (normalizedDifficulty === null) {
+    err(id, `bad difficulty "${q.difficulty}"`);
+  }
 
   if (q.answer_type === 'choice') {
-    if (!Array.isArray(q.choices)) err(id, 'answer_type is choice but no choices');
-    else {
-      if (!q.choices.includes(q.answer)) err(id, 'answer is not one of the choices');
-      if (new Set(q.choices).size !== q.choices.length) err(id, 'duplicate choices');
+    if (!Array.isArray(q.choices)) {
+      err(id, 'answer_type is choice but no choices');
+    } else {
+      if (!q.choices.includes(q.answer)) {
+        err(id, 'answer is not one of the choices');
+      }
+      if (new Set(q.choices).size !== q.choices.length) {
+        err(id, 'duplicate choices');
+      }
     }
   }
 
   if (q.subskills !== undefined) {
-    if (!Array.isArray(q.subskills) || q.subskills.length === 0) err(id, 'subskills must be a non-empty array');
-    else for (const s of q.subskills) {
-      if (!/^SK\d\d\.\d\d$/.test(s)) err(id, `bad subskill format "${s}"`);
-      else if (known && !known.has(s)) err(id, `subskill ${s} not in skillLevelMap.json`);
-      bySub[s] = (bySub[s] || 0) + 1;
+    if (!Array.isArray(q.subskills) || q.subskills.length === 0) {
+      err(id, 'subskills must be a non-empty array');
+    } else {
+      for (const subskillId of q.subskills) {
+        if (!/^SK\d\d\.\d\d$/.test(subskillId)) {
+          err(id, `bad subskill format "${subskillId}"`);
+        } else if (known && !known.has(subskillId)) {
+          err(id, `subskill ${subskillId} not in skillLevelMap.json`);
+        }
+
+        questionSubskills.push({
+          question_id: id,
+          subskill_id: subskillId,
+          context: q.context ?? null,
+          difficulty: normalizedDifficulty,
+          source_level: q.source_level ?? null,
+          representation: q.representation ?? null,
+        });
+      }
     }
-    if (!REP.includes(q.representation)) err(id, `bad representation "${q.representation}"`);
-    if (!CTX.includes(q.context)) err(id, `bad context "${q.context}"`);
+
+    if (!REP.includes(q.representation)) {
+      err(id, `bad representation "${q.representation}"`);
+    }
+
+    if (!CTX.includes(q.context)) {
+      err(id, `bad context "${q.context}"`);
+    }
   }
 
-  const m = /^(\d+) \+ (\d+) = \?$/.exec(q.question || '');
-  if (m && Number(m[1]) + Number(m[2]) !== Number(q.answer)) err(id, `${m[1]} + ${m[2]} is not ${q.answer}`);
+  const match = /^(\d+) \+ (\d+) = ?$/.exec(q.question || '');
+
+  if (
+    match &&
+    Number(match[1]) + Number(match[2]) !== Number(q.answer)
+  ) {
+    err(id, `${match[1]} + ${match[2]} is not ${q.answer}`);
+  }
 }
 
 console.log(`Questions: ${qs.length}`);
-console.log('By subskill:', bySub);
-if (errors.length) { console.error(`\nFAIL: ${errors.length} problem(s)\n - ` + errors.join('\n - ')); process.exit(1); }
+console.log('Question-subskill join table:');
+console.table(questionSubskills);
+
+if (errors.length > 0) {
+  console.error(`\nFAIL: ${errors.length} problem(s)\n - ` + errors.join('\n - '));
+  process.exit(1);
+}
+
+fs.writeFileSync(joinPath, JSON.stringify(questionSubskills, null, 2), 'utf8');
+
 console.log('PASS: all checks OK');
+console.log(`Join table saved to: ${joinPath}`);
 
 console.log('\nSample question summary:');
+
 for (const q of qs) {
   console.log(
     `${q.question_id} | skill=${q.subskills ? q.subskills.join(', ') : 'N/A'} | difficulty=${q.difficulty} | source_level=${q.source_level} | representation=${q.representation} | topic=${q.topic} | subtopic=${q.subtopic} | answer=${q.answer} | context=${q.context} | answer_type=${q.answer_type}`
