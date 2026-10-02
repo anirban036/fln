@@ -1,8 +1,4 @@
-db.question_subskills.find({
-  subskill_id: "SK13.06",
-  representation: "verbal",
-  context: "real_world"
-})import fs from 'node:fs';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -55,6 +51,7 @@ if (!Array.isArray(qs)) {
 }
 
 let known = null;
+const skillNameById = new Map();
 
 if (fs.existsSync(mapPath)) {
   try {
@@ -70,6 +67,14 @@ if (fs.existsSync(mapPath)) {
         )
         .filter(Boolean)
     );
+
+    for (const entry of Object.values(skillsMap)) {
+      if (!entry || !Array.isArray(entry.subskills)) continue;
+      for (const skill of entry.subskills) {
+        const id = skill?.id ?? skill;
+        if (id) skillNameById.set(String(id), skill?.name ?? String(id));
+      }
+    }
   } catch (e) {
     console.error('FAIL: could not read or parse skillLevelMap.json -> ' + e.message);
     process.exit(1);
@@ -134,6 +139,7 @@ for (const q of qs) {
         questionSubskills.push({
           question_id: id,
           subskill_id: subskillId,
+          skill_name: skillNameById.get(subskillId) ?? subskillId,
           context: q.context ?? null,
           difficulty: normalizedDifficulty,
           source_level: q.source_level ?? null,
@@ -178,7 +184,13 @@ console.log(`Join table saved to: ${joinPath}`);
 console.log('\nSample question summary:');
 
 for (const q of qs) {
+  const skillsText = q.subskills
+    ? q.subskills
+        .map((subskillId) => `${subskillId} (${skillNameById.get(subskillId) ?? 'Unknown skill'})`)
+        .join(', ')
+    : 'N/A';
+
   console.log(
-    `${q.question_id} | skill=${q.subskills ? q.subskills.join(', ') : 'N/A'} | difficulty=${q.difficulty} | source_level=${q.source_level} | representation=${q.representation} | topic=${q.topic} | subtopic=${q.subtopic} | answer=${q.answer} | context=${q.context} | answer_type=${q.answer_type}`
+    `${q.question_id} | skill=${skillsText} | difficulty=${q.difficulty} | source_level=${q.source_level} | representation=${q.representation} | topic=${q.topic} | subtopic=${q.subtopic} | answer=${q.answer} | context=${q.context} | answer_type=${q.answer_type}`
   );
 }

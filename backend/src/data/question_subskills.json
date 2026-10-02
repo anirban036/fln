@@ -2,6 +2,7 @@
   {
     "question_id": "QB-001",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 1,
     "source_level": 1,
@@ -10,6 +11,7 @@
   {
     "question_id": "QB-002",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 2,
@@ -18,6 +20,7 @@
   {
     "question_id": "QB-003",
     "subskill_id": "SK13.04",
+    "skill_name": "Addition within 20",
     "context": "direct",
     "difficulty": 1,
     "source_level": 3,
@@ -26,6 +29,7 @@
   {
     "question_id": "QB-004",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 1,
     "source_level": 4,
@@ -34,6 +38,7 @@
   {
     "question_id": "QB-005",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 7,
@@ -42,6 +47,7 @@
   {
     "question_id": "QB-006",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 9,
@@ -50,6 +56,7 @@
   {
     "question_id": "QB-007",
     "subskill_id": "SK13.03",
+    "skill_name": "Single-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 10,
@@ -58,6 +65,7 @@
   {
     "question_id": "QB-008",
     "subskill_id": "SK13.05",
+    "skill_name": "Addition within 30",
     "context": "real_world",
     "difficulty": 2,
     "source_level": 10,
@@ -66,6 +74,7 @@
   {
     "question_id": "QB-009",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "real_world",
     "difficulty": 1,
     "source_level": 10,
@@ -74,6 +83,7 @@
   {
     "question_id": "QB-010",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 1,
     "source_level": 6,
@@ -82,6 +92,7 @@
   {
     "question_id": "QB-011",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 1,
     "source_level": 2,
@@ -90,6 +101,7 @@
   {
     "question_id": "QB-012",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 3,
@@ -98,6 +110,7 @@
   {
     "question_id": "QB-013",
     "subskill_id": "SK13.03",
+    "skill_name": "Single-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 7,
@@ -106,6 +119,7 @@
   {
     "question_id": "QB-014",
     "subskill_id": "SK13.04",
+    "skill_name": "Addition within 20",
     "context": "direct",
     "difficulty": 1,
     "source_level": 8,
@@ -114,6 +128,7 @@
   {
     "question_id": "QB-015",
     "subskill_id": "SK13.09",
+    "skill_name": "Multi-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 9,
@@ -122,6 +137,7 @@
   {
     "question_id": "QB-016",
     "subskill_id": "SK13.10",
+    "skill_name": "Addition word problems",
     "context": "direct",
     "difficulty": 1,
     "source_level": 10,
@@ -130,6 +146,7 @@
   {
     "question_id": "QB-017",
     "subskill_id": "SK13.05",
+    "skill_name": "Addition within 30",
     "context": "real_world",
     "difficulty": 1,
     "source_level": 10,
@@ -138,6 +155,7 @@
   {
     "question_id": "QB-018",
     "subskill_id": "SK13.03",
+    "skill_name": "Single-digit addition",
     "context": "real_world",
     "difficulty": 1,
     "source_level": 12,
@@ -146,6 +164,7 @@
   {
     "question_id": "QB-019",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 1,
     "source_level": 15,
@@ -154,6 +173,7 @@
   {
     "question_id": "QB-020",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 12,
@@ -162,6 +182,7 @@
   {
     "question_id": "QB-021",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 21,
@@ -170,6 +191,7 @@
   {
     "question_id": "QB-022",
     "subskill_id": "SK13.04",
+    "skill_name": "Addition within 20",
     "context": "direct",
     "difficulty": 2,
     "source_level": 18,
@@ -178,6 +200,7 @@
   {
     "question_id": "QB-023",
     "subskill_id": "SK13.05",
+    "skill_name": "Addition within 30",
     "context": "direct",
     "difficulty": 2,
     "source_level": 16,
@@ -186,6 +209,7 @@
   {
     "question_id": "QB-024",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 17,
@@ -194,6 +218,7 @@
   {
     "question_id": "QB-025",
     "subskill_id": "SK13.09",
+    "skill_name": "Multi-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 20,
@@ -202,6 +227,7 @@
   {
     "question_id": "QB-026",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 1,
     "source_level": 22,
@@ -210,6 +236,7 @@
   {
     "question_id": "QB-027",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 2,
     "source_level": 20,
@@ -218,6 +245,7 @@
   {
     "question_id": "QB-028",
     "subskill_id": "SK13.08",
+    "skill_name": "Three-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 22,
@@ -226,6 +254,7 @@
   {
     "question_id": "QB-029",
     "subskill_id": "SK13.10",
+    "skill_name": "Addition word problems",
     "context": "direct",
     "difficulty": 2,
     "source_level": 22,
@@ -234,6 +263,7 @@
   {
     "question_id": "QB-030",
     "subskill_id": "SK13.09",
+    "skill_name": "Multi-digit addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 24,
@@ -242,6 +272,7 @@
   {
     "question_id": "QB-031",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 1,
     "source_level": 24,
@@ -250,6 +281,7 @@
   {
     "question_id": "QB-032",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 25,
@@ -258,6 +290,7 @@
   {
     "question_id": "QB-033",
     "subskill_id": "SK13.10",
+    "skill_name": "Addition word problems",
     "context": "direct",
     "difficulty": 1,
     "source_level": 28,
@@ -266,6 +299,7 @@
   {
     "question_id": "QB-034",
     "subskill_id": "SK13.05",
+    "skill_name": "Addition within 30",
     "context": "direct",
     "difficulty": 2,
     "source_level": 26,
@@ -274,6 +308,7 @@
   {
     "question_id": "QB-035",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 27,
@@ -282,6 +317,7 @@
   {
     "question_id": "QB-036",
     "subskill_id": "SK13.08",
+    "skill_name": "Three-digit addition",
     "context": "real_world",
     "difficulty": 2,
     "source_level": 31,
@@ -290,6 +326,7 @@
   {
     "question_id": "QB-037",
     "subskill_id": "SK13.08",
+    "skill_name": "Three-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 30,
@@ -298,6 +335,7 @@
   {
     "question_id": "QB-038",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 2,
     "source_level": 34,
@@ -306,6 +344,7 @@
   {
     "question_id": "QB-039",
     "subskill_id": "SK13.01",
+    "skill_name": "Combine sets",
     "context": "direct",
     "difficulty": 2,
     "source_level": 36,
@@ -314,6 +353,7 @@
   {
     "question_id": "QB-040",
     "subskill_id": "SK13.02",
+    "skill_name": "Concrete addition",
     "context": "direct",
     "difficulty": 1,
     "source_level": 34,
@@ -322,6 +362,7 @@
   {
     "question_id": "QB-041",
     "subskill_id": "SK13.10",
+    "skill_name": "Addition word problems",
     "context": "direct",
     "difficulty": 2,
     "source_level": 45,
@@ -330,6 +371,7 @@
   {
     "question_id": "QB-042",
     "subskill_id": "SK13.09",
+    "skill_name": "Multi-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 39,
@@ -338,6 +380,7 @@
   {
     "question_id": "QB-043",
     "subskill_id": "SK13.03",
+    "skill_name": "Single-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 42,
@@ -346,6 +389,7 @@
   {
     "question_id": "QB-044",
     "subskill_id": "SK13.04",
+    "skill_name": "Addition within 20",
     "context": "direct",
     "difficulty": 1,
     "source_level": 47,
@@ -354,6 +398,7 @@
   {
     "question_id": "QB-045",
     "subskill_id": "SK13.08",
+    "skill_name": "Three-digit addition",
     "context": "direct",
     "difficulty": 3,
     "source_level": 36,
@@ -362,6 +407,7 @@
   {
     "question_id": "QB-046",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "direct",
     "difficulty": 3,
     "source_level": 37,
@@ -370,6 +416,7 @@
   {
     "question_id": "QB-047",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 3,
     "source_level": 46,
@@ -378,6 +425,7 @@
   {
     "question_id": "QB-048",
     "subskill_id": "SK13.06",
+    "skill_name": "Two-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 43,
@@ -386,6 +434,7 @@
   {
     "question_id": "QB-049",
     "subskill_id": "SK13.07",
+    "skill_name": "Addition with regrouping",
     "context": "direct",
     "difficulty": 3,
     "source_level": 50,
@@ -394,6 +443,7 @@
   {
     "question_id": "QB-050",
     "subskill_id": "SK13.08",
+    "skill_name": "Three-digit addition",
     "context": "direct",
     "difficulty": 2,
     "source_level": 42,
